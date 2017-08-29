@@ -11,7 +11,7 @@ vertex InVertex box_vertex_main(constant InVertex *vertices [[buffer(0)]],
 	return vertices[vid];
 };
 
-fragment half4 box_fragment_main(OutVertex outVertex [[stage_in]])
+fragment float4 box_fragment_main(OutVertex outVertex [[stage_in]])
 {
-	return half4(outVertex.color);
+	return float4(outVertex.color);
 }

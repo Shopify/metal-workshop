@@ -22,7 +22,7 @@ vertex InVertex circle_vertex_main(constant InVertex *vertices [[buffer(0)]],
 	return outVertex;
 };
 
-fragment half4 circle_fragment_main(InVertex inFrag [[stage_in]])
+fragment float4 circle_fragment_main(InVertex inFrag [[stage_in]])
 {
-	return half4(inFrag.color);
+	return float4(inFrag.color);
 };

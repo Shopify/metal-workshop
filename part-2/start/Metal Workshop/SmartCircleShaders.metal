@@ -30,7 +30,7 @@ vertex OutVertex smart_circle_vertex_main(constant InVertex *vertices [[buffer(0
 	return outVertex;
 };
 
-fragment half4 smart_circle_fragment_main(OutVertex outVertex [[stage_in]])
+fragment float4 smart_circle_fragment_main(OutVertex outVertex [[stage_in]])
 {
 	
 }

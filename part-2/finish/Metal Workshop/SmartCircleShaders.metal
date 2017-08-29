@@ -30,7 +30,7 @@ vertex OutVertex smart_circle_vertex_main(constant InVertex *vertices [[buffer(0
 	return outVertex;
 };
 
-fragment half4 smart_circle_fragment_main(OutVertex outVertex [[stage_in]])
+fragment float4 smart_circle_fragment_main(OutVertex outVertex [[stage_in]])
 {
 	//calculate distance from origin
 	float2 flippedWindowOrigin = float2(outVertex.windowOrigin[0],
@@ -42,8 +42,8 @@ fragment half4 smart_circle_fragment_main(OutVertex outVertex [[stage_in]])
 	//get circle radius
 	float circleRadius = min(outVertex.windowSize[1], outVertex.windowSize[0])/4;
 	if (distance < circleRadius) {
-		return half4(outVertex.color);
+		return float4(outVertex.color);
 	} else {
-		return half4(0);
+		return float4(0);
 	}
 }
