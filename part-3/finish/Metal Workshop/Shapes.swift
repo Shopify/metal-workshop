@@ -58,7 +58,7 @@ struct PulsingCircle: Shape {
 
 	mutating func add(timestep: TimeInterval) {
 		var newTime = self.animationTime + timestep
-		if newTime > 2 * Double.pi {
+		if newTime > Double.pi {
 			newTime = 0
 		}
 		self.animationTime = newTime

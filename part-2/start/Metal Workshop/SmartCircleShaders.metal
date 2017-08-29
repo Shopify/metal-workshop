@@ -32,5 +32,7 @@ vertex OutVertex smart_circle_vertex_main(constant InVertex *vertices [[buffer(0
 
 fragment float4 smart_circle_fragment_main(OutVertex outVertex [[stage_in]])
 {
-	
+	//Metal has window coordinate system flipped from MacOS on Y axis
+	float2 flippedWindowOrigin = float2(outVertex.windowOrigin[0],
+										outVertex.windowSize[1] - outVertex.windowOrigin[1]);
 }

@@ -25,7 +25,7 @@ vertex OutVertex pulsing_circle_vertex_main(constant InVertex *vertices [[buffer
 	outVertex.windowSize = uniform.windowSize;
 
 	//set colour
-	float alpha = fabs(sin(uniform.animationTime));
+	float alpha = sin(uniform.animationTime);
 	outVertex.color = float4(inVertex.color[0],
 							 inVertex.color[1],
 							 inVertex.color[2],
