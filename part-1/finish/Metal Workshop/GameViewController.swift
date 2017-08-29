@@ -8,7 +8,7 @@ class GameViewController: NSViewController, MTKViewDelegate {
     var commandQueue: MTLCommandQueue! = nil
 
 	//renderers
-	let circleRenderer = CircleRenderer()
+	let circleRenderer = BoxRenderer()
 
     override func viewDidLoad() {
         
@@ -31,8 +31,8 @@ class GameViewController: NSViewController, MTKViewDelegate {
 		view.preferredFramesPerSecond = 30
 
 		//add circles to draw
-		let position1 = CGPoint(x: 0, y: 0)
-		self.circleRenderer.drawShape(clipPosition: position1)
+		let position1 = CGPoint(x: 500, y: 500)
+		self.circleRenderer.drawShape(windowPosition: position1)
 	}
 
     func update() {
@@ -74,6 +74,6 @@ class GameViewController: NSViewController, MTKViewDelegate {
     }
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-
-	}
+		self.circleRenderer.windowSize = size
+    }
 }

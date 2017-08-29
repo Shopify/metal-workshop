@@ -14,7 +14,8 @@ struct OutVertex {
 	float2 windowSize;
 };
 
-struct InnefficientCircleUniform {
+struct BoxUniform {
+	float2 windowSize;
+	float2 windowOrigin;
 };
-
 

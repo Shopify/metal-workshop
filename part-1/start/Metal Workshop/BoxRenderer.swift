@@ -2,14 +2,14 @@ import Foundation
 import Metal
 import MetalKit
 
-class CircleRenderer: Renderer {
+class BoxRenderer: Renderer {
 
 	let device = MTLCreateSystemDefaultDevice()!
 
 	//shape definition
 	let vertexCount: Int = 6
 	var indexCount: Int = 0
-	var shapes = [InnefficientCircle]()
+	var shapes = [Box]()
 
 	//instanced rendering
 	var indexBuffer: MTLBuffer?
@@ -20,8 +20,22 @@ class CircleRenderer: Renderer {
 	//shader functions
 	var vertexFunction: MTLFunction?
 	var fragmentFunction: MTLFunction?
-	var vertexFunctionName: String { return "circle_vertex_main" }
-	var fragmentFunctionName: String { return "circle_fragment_main" }
+	var vertexFunctionName: String { return "box_vertex_main" }
+	var fragmentFunctionName: String { return "box_fragment_main" }
+
+
+	//instance properties
+	var circleOrigin: CGPoint = CGPoint.zero {
+		didSet {
+			self.updateUniformBuffer()
+		}
+	}
+
+	var windowSize: CGSize = CGSize.zero {
+		didSet {
+			self.updateUniformBuffer()
+		}
+	}
 
 	func configure() {
 
@@ -44,15 +58,17 @@ class CircleRenderer: Renderer {
 		}
 	}
 
-	func drawShape(clipPosition: CGPoint) {
-		let newCircle = InnefficientCircle(numSides: UInt16(self.vertexCount))
+	func circleUniforms() -> [BoxUniform] {
+		return self.shapes.map { $0.uniform(windowSize: self.windowSize) }
+	}
+
+	func drawShape(windowPosition: CGPoint) {
+		let newCircle = Box(
+			windowOrigin: windowPosition,
+			alpha: 1)
 		self.shapes.append(newCircle)
 		self.configure()
 		self.updateUniformBuffer()
-	}
-
-	func circleUniforms() -> [InnefficientCircleUniform] {
-		return self.shapes.map { $0.uniform() }
 	}
 
 	func updateUniformBuffer() {

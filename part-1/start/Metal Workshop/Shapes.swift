@@ -6,7 +6,7 @@ struct Vertex {
 	let color: vector_float4
 }
 
-struct InnefficientCircleUniform {}
+struct BoxUniform {}
 
 protocol Shape {
 	var vertices: [CGPoint] { get }
@@ -25,20 +25,16 @@ extension Shape {
 	}
 }
 
-struct InnefficientCircle: Shape {
+struct Box: Shape {
 
-	private var numSides: UInt16
+	var windowOrigin: CGPoint
+	var alpha: Float
 
-	var vertices: [CGPoint]
-	var indices: [UInt16]
+	public let vertices: [CGPoint] =
 
-	init(numSides: UInt16) {
-	}
+	public let indices: [UInt16] =
 
-	static func verticesForCircle(numSides: UInt16) -> [CGPoint] {
-	}
-
-	func uniform() -> InnefficientCircleUniform {
-		return InnefficientCircleUniform()
+	func uniform(windowSize: CGSize) -> BoxUniform {
+		return BoxUniform()
 	}
 }
