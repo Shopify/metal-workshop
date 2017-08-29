@@ -40,8 +40,6 @@ extension Shape {
 
 struct PulsingCircle: Shape {
 
-	static let ANIMATION_DURATION: TimeInterval = 1
-
 	var windowOrigin: CGPoint
 	var animationTime: TimeInterval
 
